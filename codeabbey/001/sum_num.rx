@@ -1,0 +1,10 @@
+parse upper pull numero1
+
+parse upper pull numero2
+
+numero1 = value(numero1)
+numero2 = value(numero2)
+
+resultado = numero1 + numero2
+
+say resultado

@@ -1,0 +1,12 @@
+parse upper pull cadenaNumeros
+
+numeros = words(cadenaNumeros)
+
+suma = 0
+
+do i = 1 to numeros
+  numero = value(word(cadenaNumeros, i))
+  suma = suma + numero
+end
+
+say suma
