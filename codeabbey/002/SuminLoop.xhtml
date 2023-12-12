@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>Suma de Números</title>
+  <script type="text/javascript">
+    function calcularSuma() {
+      var inputCadena = document.getElementById('cadenaNumeros').value;
+      var numeros = inputCadena.split(' ');
+      var suma = 0;
+
+      for (var i = 0; i < numeros.length; i++) {
+        suma += parseInt(numeros[i], 10) || 0; // Convertir a entero, si es posible
+      }
+
+      alert('La suma de los números es: ' + suma);
+    }
+  </script>
+</head>
+<body>
+  <h1>Suma de Números</h1>
+  <p>Ingrese una cadena de números separados por espacios:</p>
+  <input type="text" id="cadenaNumeros" />
+  <br />
+  <button onclick="calcularSuma()">Calcular Suma</button>
+</body>
+</html>
