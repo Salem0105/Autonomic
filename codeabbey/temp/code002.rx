@@ -1,0 +1,22 @@
+/*
+ regina -c salem0105.rx
+*/
+
+call chainSum
+exit
+
+chainSum: 
+  pull entry
+  numbers = words(entry)
+  sum = 0
+  do i = 1 to numbers
+      num = value(word(entry, i))
+      sum = sum + num
+  end
+
+  say sum
+  return
+
+/* cat DATA.lst | regina -e salem0105
+29980
+*/

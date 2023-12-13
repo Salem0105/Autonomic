@@ -1,0 +1,4 @@
+/* Example of function use */
+myname="John Q. Public" /* assign a literal string to MYNAME */
+surname=word(myname,3) /* assign WORD result to SURNAME */
+say surname /* display Public */

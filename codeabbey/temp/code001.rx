@@ -1,0 +1,18 @@
+/*
+ regina -c salem0105.rx
+*/
+
+call sumNumbers
+exit
+
+sumNumbers:
+ pull userInput1 
+ pull userInput2
+ sum = userInput1 + userInput2
+ say sum
+ return
+
+/*
+  cat DATA.lst | regina -e salem0105
+  29266
+*/

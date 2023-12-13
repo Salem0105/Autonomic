@@ -1,0 +1,37 @@
+// Archivo: Suma_Cadena.pas
+//For the Damaged Coda - Blonde Redhead
+
+program Suma_Cadena;
+
+{$APPTYPE CONSOLE}
+
+uses
+  SysUtils;
+
+var
+  inputString: string;
+  numeros: array of Integer;
+  numStr: string;
+  suma: Integer;
+begin
+  Write('Ingrese una cadena de números separados por espacios: ');
+  ReadLn(inputString);
+
+  SetLength(numeros, 0);
+
+  // Procesar la cadena y convertir a números
+  for numStr in inputString.Split([' ']) do
+  begin
+    numeros := numeros + [StrToInt(numStr)];
+  end;
+
+  // Calcular la suma
+  suma := 0;
+  for numStr in numeros do
+  begin
+    suma := suma + numStr;
+  end;
+
+  // Mostrar el resultado
+  WriteLn('La suma de los números es: ', suma);
+end.
