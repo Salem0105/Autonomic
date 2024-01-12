@@ -2,17 +2,23 @@
  regina -c salem0105.rx
 */
 
-call sumNumbers
-exit
+main:
+  sum()
 
-sumNumbers:
- pull userInput1 
- pull userInput2
- sum = userInput1 + userInput2
- say sum
- return
+sum:
+  pull x
+  nums = words(x)
+  call factorial nums
+  say result
+  exit
+  factorial: procedure expose x
+    arg n
+    if n = 0 then return 0
+    element = word(x,n)
+    call factorial n - 1
+    return result + element
 
 /*
   cat DATA.lst | regina -e salem0105
-  29266
+  27685
 */
