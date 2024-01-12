@@ -1,4 +1,5 @@
 ;; Archivo: Suma_Cadena.scm
+; HYDRA - MYTH & ROID
 
 (define (suma-lista numeros)
   (if (null? numeros)

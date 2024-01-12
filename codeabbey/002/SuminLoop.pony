@@ -1,4 +1,6 @@
 actor Main
+// Los! Los! Los! - Aoi Yūki
+
   new create(env: Env) =>
     let inputString = try readLine() end
     let numeros = inputString.split(' ').map[USize]((string: String) => string.to[USize]())

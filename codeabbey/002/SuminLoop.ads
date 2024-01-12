@@ -1,7 +1,7 @@
 package Suma_Cadena is
    procedure Calcular_Suma;
 end Suma_Cadena;
-
+-- VORACITY - MYTH & ROID -TVアニメ「オーバーロードⅢ」オープニングテーマ「VORACITY」
 -- Archivo: Suma_Cadena.adb
 
 with Ada.Text_IO;

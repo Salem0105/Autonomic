@@ -1,4 +1,4 @@
-; Programa en Red para calcular la suma de pares de números
+; STYX HELIX - STYX HELIX
 
 total-pares: to-integer ask "Ingrese la cuenta total de pares: "
 

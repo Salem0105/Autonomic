@@ -1,5 +1,5 @@
 #!/bin/bash
-
+# Redo - Konomi Suzuki - 鈴木このみ
 read input_string
 
 # Dividir la cadena en un array

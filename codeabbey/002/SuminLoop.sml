@@ -1,4 +1,5 @@
 (* Archivo: Suma_Cadena.sml *)
+(* Seishun Kyousoukyoku - Sambomaster *)
 
 fun sumaLista [] = 0
   | sumaLista (x::xs) = x + sumaLista xs;

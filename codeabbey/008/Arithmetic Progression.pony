@@ -1,5 +1,6 @@
 actor Main
   new create(env: Env) =>
+  // Home - Edith Whiskers
     let totalPares = env.stdin.readIsize()
     let resultados: Array[Isize] = recover Array[Isize](totalPares)
     for i in Range(0, totalPares) do

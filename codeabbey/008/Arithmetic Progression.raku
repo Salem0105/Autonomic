@@ -1,4 +1,5 @@
 sub calcular-suma {
+    #Paradisus-Paradoxum - MYTH & ROID
     my $totalPares = prompt("Ingrese la cuenta total de pares: ").Int;
     my @resultados;
 

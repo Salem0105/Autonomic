@@ -1,5 +1,5 @@
 with Ada.Text_IO;
-
+-- アイデン貞貞メルトダウン Enako (えなこ)
 procedure Suma_Cadena is
    Input_String : String(1..100);  
    Suma         : Integer := 0;

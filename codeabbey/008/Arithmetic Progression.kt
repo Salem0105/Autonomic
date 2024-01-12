@@ -1,5 +1,5 @@
 fun main() {
-    // Leer la cuenta total de pares
+    // Plain Jane - KEAN DYSSO
     print("Ingrese la cuenta total de pares: ")
     val totalPares = readLine()!!.toInt()
 

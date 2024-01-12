@@ -1,0 +1,25 @@
+type: code
+user-name: salem0105
+stage: challenges
+complexity: 4.93
+others:
+  in: 32
+  out: 53
+  totals: 85
+score:
+  initial: 8.86
+  final: 13.79
+  progress: 4.93
+global-rank:
+  initial: 21319
+  final: 17435
+  progress: 3884
+national-rank:
+  initial: 1301
+  final: 1032
+  progress: 269
+total-time: 63.5
+effort: 1
+productivity: 4.93
+date: "2024-01-12 14:30:01Z"
+path: salem0105.rx

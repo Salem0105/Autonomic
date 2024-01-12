@@ -1,4 +1,4 @@
-# Programa AWK para calcular la suma de pares de números
+# Whisper Whisper Whisper - Azari
 
 BEGIN {
     # Leer la cuenta total de pares

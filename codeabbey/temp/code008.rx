@@ -23,7 +23,7 @@ factorial: procedure
 
 parameters: 
   arg i, g, r
-  call repeat (r-1)
+  call repeat (r - 1)
   return result + i
 
 repeat: procedure expose i g

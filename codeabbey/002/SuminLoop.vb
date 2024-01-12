@@ -1,4 +1,5 @@
 Module Module1
+' Stay Alive - エミリア(CV:高橋李依)
     Sub Main()
         Dim inputString As String = Console.ReadLine()
 
