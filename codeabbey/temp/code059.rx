@@ -1,0 +1,36 @@
+main:
+  pull codes
+  pull retrys
+  solutions(codes, retrys)
+
+solutions:
+  arg codes, retrys
+  parse var codes secret attempts
+  call repeat attempts
+  say result
+  exit
+
+repeat: procedure expose retrys secret
+  arg count
+  if count == 0 then return ''
+  nearby = compare(retrys, secret, count)
+  call repeat count - 1
+  return result || ' ' || nearby
+
+compare: procedure
+  arg retrys, secret, count
+  num = Value(word(retrys, count))
+  nums = toFragment(num)
+  numsS = toFragment(secret)
+  trueFate = conditions(nums, numsS, count)
+  return trueFate
+
+toFragment:
+  arg number
+  n_1 = number % 1000
+  n_2 = (number % 100) // 10
+  n_3 = (number % 10) // 100 // 10
+  n_4 = number // 10
+  return n_1 ' ' n_2 ' ' n_3 ' ' n_4
+
+conditions:

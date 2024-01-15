@@ -1,0 +1,20 @@
+main:
+  result = conditions('2 0 1 3', '1 4 9 2', 4, 0, 0)
+  say result
+  exit
+
+conditions: procedure 
+  arg nums, numsS, count, cont1, cont2
+  if count == 0 then return 0
+  xR = value(word(nums, count))
+  if word(numsS, 1) == word(nums, 1) then  cont1 = cont1 + 1
+  else if word(numsS, 1) == xR then  cont2 = cont2 + 1
+  if word(numsS, 2) == word(nums, 2) then  cont1 = cont1 + 1
+  else if word(numsS, 2) == xR then  cont2 = cont2 + 1
+  if word(numsS, 3) == word(nums, 3) then  cont1 = cont1 + 1
+  else if word(numsS, 3) == xR then  cont2 = cont2 + 1
+  if word(numsS, 4) == word(nums, 4) then  cont1 = cont1 + 1
+  else if word(numsS, 4) == xR then  cont2 = cont2 + 1
+  say cont1 '' cont2
+  call conditions nums, numsS, count - 1, cont1, cont2
+  return cont1 || '-' || cont2
