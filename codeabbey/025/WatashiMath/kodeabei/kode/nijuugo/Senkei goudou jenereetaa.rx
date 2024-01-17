@@ -28,6 +28,9 @@ generate_lcg: procedure
   if num_values > 0 then do
     random_value = (A * seed + C) // M
     resultado = random_value
-    call generate_lcg A, C, M, random_value, num_values - 1
+    say '('resultado') ['seed'] Round#: 'num_values
+    seed = random_value
+    call generate_lcg A, C, M, seed, num_values - 1
+    return resultado || seed
   end
-  return resultado
+  return
