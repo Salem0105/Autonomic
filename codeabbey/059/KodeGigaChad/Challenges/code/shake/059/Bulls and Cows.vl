@@ -1,0 +1,50 @@
+module CodeGuessingGame (
+  input wire clk,
+  input wire rst,
+  output wire [3:0] hint,
+  input wire [3:0] secret,
+  input wire [3:0] guesses [0:4]
+);
+  reg [1:0] state;
+  reg [3:0] secret_reg;
+  reg [3:0] guess_reg;
+  reg [1:0] correct_position_count;
+  reg [1:0] correct_digit_count;
+
+  always @(posedge clk or posedge rst) begin
+    if (rst) begin
+      state <= 2'b00;
+      secret_reg <= 4'b0000;
+      guess_reg <= 4'b0000;
+      correct_position_count <= 2'b00;
+      correct_digit_count <= 2'b00;
+      hint <= 4'b0000;
+    end else begin
+      case (state)
+        2'b00: begin  // Idle state
+          if (guess_reg == 4'b0000) begin
+            state <= 2'b01;  // Move to guessing state
+          end
+        end
+        2'b01: begin  // Guessing state
+          guess_reg <= guesses[state - 1];
+          state <= 2'b10;  // Move to evaluating state
+        end
+        2'b10: begin  // Evaluating state
+          correct_position_count <= 
+            (guess_reg[0] == secret_reg[0]) +
+            (guess_reg[1] == secret_reg[1]) +
+            (guess_reg[2] == secret_reg[2]) +
+            (guess_reg[3] == secret_reg[3]);
+          correct_digit_count <= 
+            (guess_reg[0] == secret_reg[1] || guess_reg[0] == secret_reg[2] || guess_reg[0] == secret_reg[3]) +
+            (guess_reg[1] == secret_reg[0] || guess_reg[1] == secret_reg[2] || guess_reg[1] == secret_reg[3]) +
+            (guess_reg[2] == secret_reg[0] || guess_reg[2] == secret_reg[1] || guess_reg[2] == secret_reg[3]) +
+            (guess_reg[3] == secret_reg[0] || guess_reg[3] == secret_reg[1] || guess_reg[3] == secret_reg[2]);
+          hint <= {correct_position_count, correct_digit_count};
+          state <= 2'b00;  // Move back to idle state
+        end
+      endcase
+    end
+  end
+endmodule

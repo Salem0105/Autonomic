@@ -1,5 +1,7 @@
 main:
-  solutions(3, '0001 4100 5761')
+  pull number1
+  pull number2
+  solutions(number1, number2)
 
 solutions:
   arg amount, numbers
@@ -30,4 +32,3 @@ dopa: procedure
   truncated = (squared % 100) // 10000
   if xValue = truncated then return cont
   return dopa(truncated, cont + 1, xValue)
-
