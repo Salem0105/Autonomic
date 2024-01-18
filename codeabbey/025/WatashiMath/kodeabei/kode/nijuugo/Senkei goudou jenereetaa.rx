@@ -18,19 +18,20 @@ factorial: procedure
   M = VALUE(word(numbers, 3))
   X = VALUE(word(numbers, 4))
   N = VALUE(word(numbers, 5))
-  summation = generate_lcg(A, C, M, X, N)
+  get = randuim(A, C, M, X, N)
   call factorial receive - 1
-  return  summation || ' ' || result
+  return  get '' result
 
-generate_lcg: procedure
-  parse arg A, C, M, seed, num_values
-  
-  if num_values > 0 then do
-    random_value = (A * seed + C) // M
-    resultado = random_value
-    say '('resultado') ['seed'] Round#: 'num_values
-    seed = random_value
-    call generate_lcg A, C, M, seed, num_values - 1
-    return resultado || seed
-  end
-  return
+randuim:
+  parse arg A, C, M, X, N
+  get = ''
+  call generate_lcg A, C, M, X, N
+  return get
+  exit
+  generate_lcg: procedure expose get
+    parse arg A, C, M, X, N
+    if N > 0 then do
+      random_value = (A * X + C) // M
+      get = random_value
+      call generate_lcg A, C, M, random_value, N - 1
+    end

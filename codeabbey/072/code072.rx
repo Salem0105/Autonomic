@@ -1,0 +1,47 @@
+/*regina -c salem0105.rx*/
+
+main:
+  principal()
+
+principal:
+  pull amountSeed
+  pull wordsN
+  parse var amountSeed amount seed
+  A = 445
+  C = 700001
+  M = 2097152
+  call recursion 1
+  say result
+  exit
+
+recursion: procedure expose A C M seed wordsN amount
+  arg receive
+  if receive > amount then return ''
+  N = VALUE(word(wordsN, receive))
+  set = randuim(A, C, M, seed, N)
+  call recursion receive + 1
+  return  set' 'result
+
+randuim:
+  parse arg A, C, M, X, N
+  get = ''
+  call generate_lcg A, C, M, X, N
+  return get
+  exit
+  generate_lcg: procedure expose get seed
+    parse arg A, C, M, X, N
+    if N > 0 then do
+      random_value = (A * X + C) // M
+      get = get''letters(random_value)''
+      seed = random_value
+      call generate_lcg A, C, M, random_value, N - 1
+    end
+
+letters:
+  vowels = 'aeiou'
+  consonants = 'bcdfghjklmnprstvwxz'
+  parse arg num
+  if num // 2 == 0 then return substr(vowels, (num // 5) + 1, 1)
+  else if num // 2 == 1 then return substr(consonants, (num // 19) + 1, 1)
+  return ''
+
