@@ -1,9 +1,9 @@
 /*regina -c salem0105.rx*/
 
 main:
-  principal()
+  funnyWords()
 
-principal:
+funnyWords:
   pull amountSeed
   pull wordsN
   parse var amountSeed amount seed
@@ -23,25 +23,36 @@ recursion: procedure expose A C M seed wordsN amount
   return  set' 'result
 
 randuim:
-  parse arg A, C, M, X, N
+  parse arg A, C, M, X, num_N
   get = ''
-  call generate_lcg A, C, M, X, N
+  call generate_lcg A, C, M, X, 1
   return get
   exit
-  generate_lcg: procedure expose get seed
-    parse arg A, C, M, X, N
-    if N > 0 then do
+  generate_lcg: procedure expose get seed N
+    parse arg A, C, M, X, num_N
+    if num_N <= N then do
       random_value = (A * X + C) // M
-      get = get''letters(random_value)''
       seed = random_value
-      call generate_lcg A, C, M, random_value, N - 1
+      get = get''letters(num_N, seed)''
+      call generate_lcg A, C, M, random_value, num_N + 1
     end
 
 letters:
   vowels = 'aeiou'
   consonants = 'bcdfghjklmnprstvwxz'
-  parse arg num
-  if num // 2 == 0 then return substr(vowels, (num // 5) + 1, 1)
-  else if num // 2 == 1 then return substr(consonants, (num // 19) + 1, 1)
+  parse arg num, newLetter
+  select
+    when num // 2 == 0 then
+      return substr(vowels, (newLetter // 5) + 1, 1)
+    when num // 2 == 1 then
+      return substr(consonants, (newLetter // 19) + 1, 1)
+    otherwise
+      return ''
+  end
   return ''
 
+/*
+  cat DATA.lst | regina -e salem0105.rx
+  rohame daze zemeb topumo gutihu six gozocawa mogumowa polavu codox 
+  fukan niki dovicox gacor ciniveb jip vof gewoja sabuced xewog tamewawu
+*/

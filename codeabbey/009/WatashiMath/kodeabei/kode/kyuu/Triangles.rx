@@ -1,0 +1,20 @@
+pull num1
+know = ''
+
+do i = 1 to num1
+  pull next
+  parse var next a b c
+  say a'' b ''c
+  call t a, b, c
+end
+
+say know
+
+
+t: procedure expose know
+  parse arg a b c
+  say a'' b ''c
+  if a + b > c & a + c > b & b + c > a then
+    know = '1'
+  else 
+    know = '0'
