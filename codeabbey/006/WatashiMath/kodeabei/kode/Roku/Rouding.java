@@ -1,7 +1,7 @@
 import java.util.Scanner;
 // Crossing Field - Lisa
 
-public class Main {
+public class Rouding {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 

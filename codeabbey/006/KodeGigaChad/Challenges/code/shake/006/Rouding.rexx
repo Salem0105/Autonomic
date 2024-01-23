@@ -1,26 +1,41 @@
-/* アイデン貞貞メルトダウン - Enako (えなこ) */
-main: procedure
-  parse pull numCases
+/* 
+  アイデン貞貞メルトダウン - Enako (えなこ) 
+  Rexx solution
+*/
+main:
+  rounding()
 
-  do i = 1 to numCases
-    parse pull pair
-    parse var pair numerator denominator
-    result = divideAndRound(numerator, denominator)
-    say result,
-  end
-
+rounding:
+  pull amount
+  call divv (amount)
+  say result
   exit
 
-/* Función para dividir y redondear */
-divideAndRound: procedure expose round
+divv: procedure
+  arg receive
+  if receive == 0 then return ''
+  pull numbers
+  n1 = word(numbers, 1)
+  n2 = word(numbers, 2)
+  round = parameters(n1, n2)
+  call divv receive - 1
+  return  round || ' ' || result
 
-  parse arg numerator denominator
-  result = round(numerator / denominator)
-  return result
-
-/* Función de redondeo */
-round: procedure
-  parse arg num
-  return num + 0.5
-
-call main
+parameters: 
+  arg n1, n2
+  new_n = n1 / n2
+  decimal = new_n // 1
+  if decimal < 0 then
+    do
+      if decimal <= (-0.5) then
+        return (new_n % 1) - 1
+      else
+        return new_n % 1
+    end
+  else
+    do
+      if decimal >= (0.5) then
+        return (new_n % 1) + 1
+      else
+        return new_n % 1  
+    end

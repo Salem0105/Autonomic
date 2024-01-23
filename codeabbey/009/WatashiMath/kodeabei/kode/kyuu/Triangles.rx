@@ -1,20 +1,28 @@
-pull num1
-know = ''
+/* Rexx solution */
 
-do i = 1 to num1
-  pull next
-  parse var next a b c
-  say a'' b ''c
-  call t a, b, c
-end
+main:
+  bin()
 
-say know
+bin:
+  pull n
+  call verify n
+  say result
+  exit
 
-
-t: procedure expose know
-  parse arg a b c
-  say a'' b ''c
-  if a + b > c & a + c > b & b + c > a then
-    know = '1'
+verify: procedure
+  arg n
+  if n == 0 then return ''
+  pull trio
+  a = word(trio, 1)
+  b = word(trio, 2)
+  c = word(trio, 3)
+  is_true = compare(a, b, c)
+  call verify n - 1
+  return is_true '' result
+  
+compare:
+  arg a, b, c
+  if (a + b) > c & (a + c) > b & (b + c) > a then
+    return '1'
   else 
-    know = '0'
+    return '0'
