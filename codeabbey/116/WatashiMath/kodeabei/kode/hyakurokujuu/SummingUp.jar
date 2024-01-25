@@ -1,0 +1,78 @@
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class Main {
+    private static final String STORAGE_FILE = "storage.txt";
+
+    static class Storage {
+        double A;
+        double B;
+        double Sum;
+
+        public Storage(double A, double B, double Sum) {
+            this.A = A;
+            this.B = B;
+            this.Sum = Sum;
+        }
+    }
+
+    private static Storage loadFromStorage() {
+        try (BufferedReader reader = new BufferedReader(new FileReader(STORAGE_FILE))) {
+            double A = Double.parseDouble(reader.readLine());
+            double B = Double.parseDouble(reader.readLine());
+            double Sum = Double.parseDouble(reader.readLine());
+            return new Storage(A, B, Sum);
+        } catch (IOException | NumberFormatException e) {
+            return new Storage(0.0, 0.0, 0.0);
+        }
+    }
+
+    private static void saveToStorage(Storage storage) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(STORAGE_FILE))) {
+            writer.write(Double.toString(storage.A));
+            writer.newLine();
+            writer.write(Double.toString(storage.B));
+            writer.newLine();
+            writer.write(Double.toString(storage.Sum));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void main(String[] args) {
+        // Load values from internal storage
+        Storage storage = loadFromStorage();
+
+        // Get input values
+        double A = getUserInput("Enter the value of A: ");
+        double B = getUserInput("Enter the value of B: ");
+
+        // Calculate sum
+        double result = A + B;
+
+        // Print the result
+        System.out.println("The sum of " + A + " and " + B + " is: " + result);
+
+        // Update storage values
+        storage.A = A;
+        storage.B = B;
+        storage.Sum = result;
+
+        // Save values to storage
+        saveToStorage(storage);
+    }
+
+    private static double getUserInput(String prompt) {
+        try {
+            BufferedReader reader = new BufferedReader(new java.io.InputStreamReader(System.in));
+            System.out.print(prompt);
+            return Double.parseDouble(reader.readLine());
+        } catch (IOException | NumberFormatException e) {
+            e.printStackTrace();
+            return 0.0;
+        }
+    }
+}
