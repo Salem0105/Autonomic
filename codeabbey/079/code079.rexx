@@ -12,8 +12,7 @@ route: procedure
   if n == 0 then return ''
   pull codes
   each = ''
-  count = 0
-  fate = 0
+  fate = 0  
   vertice = cities(2, codes)
   call couple each, words(each)
   call route n - 1
@@ -28,23 +27,35 @@ cities: procedure expose each
   call cities n_road + 1, vertices
   return each
 
-couple:procedure expose count fate
+couple:procedure expose cont1 cont2 fate
   arg each, n
   total = words(each) / 2
   if n == 0 then return 0
   c1 = word(each, n)
   c2 = word(each, n - 1)
+  cont1 = 0
+  cont2 = 0
+  vary = 0
   call to_compare c1, c2, each, words(each)
+  fate = vary
   call couple each, n - 2
-  say 'count['count'] n['n']'
-  if count > total then 
-    fate = 1
   return
 
-to_compare:procedure expose count
+to_compare:procedure expose cont1 cont2 vary
   arg c1, c2, each, n
   if n == 0 then return 0
-  if (c1 == word(each, n) | c1 == word(each, n - 1)) &,
-   (c2 == word(each, n) | c2 == word(each, n - 1)) then
-      count = count + 1
+  x1 = word(each, n)
+  x2 = word(each, n - 1)
+  
+  if c1 == x1 | c1 == x2 then
+    cont1 = cont1 + 1
+  say c1'?'x1 '-' c1'?'x2 '['c1'-'cont1']'
+  
+  if c2 == x1 | c2 == x2 then
+    cont2 = cont2 + 1
+  say c2'?'x1 '-' c2'?'x2 '['c2'-'cont2']'
+  if cont1 > 1 & cont2 > 1 then
+    vary = 1 
+  
   call to_compare c1, c2, each, n - 2
+  return
