@@ -1,0 +1,21 @@
+import java.math.BigInteger
+
+fun main() {
+    val n = 10
+    val result = countBracketSequences(n)
+    println(result)
+}
+
+fun countBracketSequences(n: Int): BigInteger {
+    val numerator = factorial(2 * n)
+    val denominator = factorial(n + 1).multiply(factorial(n))
+    return numerator.divide(denominator)
+}
+
+fun factorial(num: Int): BigInteger {
+    var result = BigInteger.ONE
+    for (i in 2..num) {
+        result *= BigInteger.valueOf(i.toLong())
+    }
+    return result
+}

@@ -13,16 +13,17 @@ try:
   call generarCombinaciones conjunto, k, 1, 1, ""
 
   generarCombinaciones: procedure
-    parse arg conjunto, k, indiceConjunto, indiceCombinacion, combinacionActual
+    arg conjunto, k, indiceConjunto, indiceCombinacion, combinacionActual
     if k = 0 then do
       say combinacionActual
     end
     else do
-      do i = value(indiceConjunto) to words(conjunto)
+      do i = indiceConjunto to words(conjunto)
         elemento = word(conjunto, i)
-        if i > indiceConjunto & elemento = word(conjunto, i-1) then iterate
-      
-        call generarCombinaciones conjunto, k - 1, i + 1, indiceCombinacion, combinacionActual elemento
+        if i > indiceConjunto & i > 1 then
+          if elemento == word(conjunto, i-1) then iterate
+        combinacionActual = combinacionActual || elemento
+        call generarCombinaciones conjunto, k - 1, i + 1, indiceCombinacion, combinacionActual
       end
     end
     return

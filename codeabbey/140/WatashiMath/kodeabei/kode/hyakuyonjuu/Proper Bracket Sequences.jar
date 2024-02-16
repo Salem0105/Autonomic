@@ -1,0 +1,24 @@
+import java.math.BigInteger;
+
+public class BracketSequences {
+
+    public static void main(String[] args) {
+        int n = 10;
+        BigInteger result = countBracketSequences(n);
+        System.out.println(result);
+    }
+
+    public static BigInteger countBracketSequences(int n) {
+        BigInteger numerator = factorial(2 * n);
+        BigInteger denominator = factorial(n + 1).multiply(factorial(n));
+        return numerator.divide(denominator);
+    }
+
+    public static BigInteger factorial(int num) {
+        BigInteger result = BigInteger.ONE;
+        for (int i = 2; i <= num; i++) {
+            result = result.multiply(BigInteger.valueOf(i));
+        }
+        return result;
+    }
+}
