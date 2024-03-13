@@ -1,0 +1,39 @@
+import java.util.Scanner;
+
+public class SkyscraperProfit {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int T = scanner.nextInt(); // Number of testcases
+
+        // Array to store results
+        int[] results = new int[T];
+
+        for (int i = 0; i < T; i++) {
+            int N = scanner.nextInt(); // Number of storeys
+            int M = scanner.nextInt(); // Floors increment
+            int X = scanner.nextInt(); // Initial price
+
+            // Calculate total profit
+            int totalProfit = calculateProfit(N, M, X);
+            results[i] = totalProfit;
+        }
+
+        // Print results
+        for (int profit : results) {
+            System.out.print(profit + " ");
+        }
+    }
+
+    // Method to calculate total profit
+    private static int calculateProfit(int N, int M, int X) {
+        int totalProfit = 0;
+        int increment = 0;
+
+        for (int floor = 0; floor < N; floor++) {
+            totalProfit += (X + increment) * (N / M - (floor / M));
+            increment += (floor + 1) % M == 0 ? 1000 : 0;
+        }
+
+        return totalProfit;
+    }
+}
